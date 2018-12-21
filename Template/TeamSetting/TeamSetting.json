@@ -1,0 +1,31 @@
+{
+  "settings": [
+    {
+      "Team": "Web",
+      "bugsBehavior": "asRequirements",
+      "backlogVisibilities": {
+        "Microsoft.EpicCategory": false,
+        "Microsoft.FeatureCategory": true,
+        "Microsoft.RequirementCategory": true
+      }
+    },
+    {
+      "Team": "SmartHotel360 Team",
+      "bugsBehavior": "asRequirements",
+      "backlogVisibilities": {
+        "Microsoft.EpicCategory": true,
+        "Microsoft.FeatureCategory": true,
+        "Microsoft.RequirementCategory": true
+      }
+    },
+    {
+      "Team": "Mobile",
+      "bugsBehavior": "asRequirements",
+      "backlogVisibilities": {
+        "Microsoft.EpicCategory": false,
+        "Microsoft.FeatureCategory": true,
+        "Microsoft.RequirementCategory": true
+      }
+    }
+  ]
+}

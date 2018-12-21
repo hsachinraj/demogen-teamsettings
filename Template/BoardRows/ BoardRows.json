@@ -1,0 +1,47 @@
+{
+  "Rows": [
+    {
+      "Team": "Web",
+      "value": [
+        {
+          "id": "b5317edb-9697-46ed-9c55-6aba7dc0c138",
+          "name": "Testing"
+        },
+        {
+          "id": "8179eba2-5818-406e-9dd6-2394e338b206",
+          "name": "Working"
+        },
+        {
+          "id": "00000000-0000-0000-0000-000000000000",
+          "name": null
+        }
+      ]
+    },
+    {
+      "Team": "SmartHotel360 Team",
+      "value": [
+        {
+          "id": "00000000-0000-0000-0000-000000000000",
+          "name": null
+        }
+      ]
+    },
+    {
+      "Team": "Mobile",
+      "value": [
+        {
+          "id": "e97da0c2-464a-4759-ae49-2c783a523622",
+          "name": "Release"
+        },
+        {
+          "id": "8cc8bc1c-bc98-459e-bbde-a2ceb2793417",
+          "name": "Build"
+        },
+        {
+          "id": "00000000-0000-0000-0000-000000000000",
+          "name": null
+        }
+      ]
+    }
+  ]
+}
