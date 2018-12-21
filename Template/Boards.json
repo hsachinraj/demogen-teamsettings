@@ -1,109 +1,122 @@
 {
-    "TeamName": "Web Team",
-    "Board": [
+  "TeamName": "Web Team",
+  "Board": [
+    {
+      "name": "Backlog items",
+      "columns": [
         {
-        "name": "Backlog items",
-        "columns": [{
-            "name": "New",
-            "itemLimit": 0,
-            "stateMappings": {
-                "Product Backlog Item": "New",
-                "Bug": "New"
-            },
-            "columnType": "incoming"
-        }, {
-            "name": "Approved",
-            "itemLimit": 5,
-            "stateMappings": {
-                "Product Backlog Item": "Approved",
-                "Bug": "Approved"
-            },
-            "isSplit": false,
-            "description": "",
-            "columnType": "inProgress"
-        }, {
-            "name": "Committed",
-            "itemLimit": 5,
-            "stateMappings": {
-                "Product Backlog Item": "Committed",
-                "Bug": "Committed"
-            },
-            "isSplit": false,
-            "description": "",
-            "columnType": "inProgress"
-        }, {
-            "name": "Done",
-            "itemLimit": 0,
-            "stateMappings": {
-                "Product Backlog Item": "Done",
-                "Bug": "Done"
-            },
-            "columnType": "outgoing"
-        }],
-        "rows": [{
-            "name": null
-        }],
-        "isValid": true,
-        "allowedMappings": {
-            "Incoming": {
-                "Bug": ["New"],
-                "Product Backlog Item": ["New"]
-            },
-            "InProgress": {
-                "Bug": ["Approved", "Committed", "New"],
-                "Product Backlog Item": ["Approved", "Committed", "New"]
-            },
-            "Outgoing": {
-                "Bug": ["Done"],
-                "Product Backlog Item": ["Done"]
-            }
+          "name": "New",
+          "itemLimit": 0,
+          "stateMappings": {
+            "Product Backlog Item": "New",
+            "Bug": "New"
+          },
+          "columnType": "incoming"
         },
-        "canEdit": true
+        {
+          "name": "Approved",
+          "itemLimit": 5,
+          "stateMappings": {
+            "Product Backlog Item": "Approved",
+            "Bug": "Approved"
+          },
+          "isSplit": false,
+          "description": "",
+          "columnType": "inProgress"
+        },
+        {
+          "name": "Committed",
+          "itemLimit": 5,
+          "stateMappings": {
+            "Product Backlog Item": "Committed",
+            "Bug": "Committed"
+          },
+          "isSplit": false,
+          "description": "",
+          "columnType": "inProgress"
+        },
+        {
+          "name": "Done",
+          "itemLimit": 0,
+          "stateMappings": {
+            "Product Backlog Item": "Done",
+            "Bug": "Done"
+          },
+          "columnType": "outgoing"
+        }
+      ],
+      "rows": [
+        {
+          "name": null
+        }
+      ],
+      "isValid": true,
+      "allowedMappings": {
+        "Incoming": {
+          "Bug": [ "New" ],
+          "Product Backlog Item": [ "New" ]
+        },
+        "InProgress": {
+          "Bug": [ "Approved", "Committed", "New" ],
+          "Product Backlog Item": [ "Approved", "Committed", "New" ]
+        },
+        "Outgoing": {
+          "Bug": [ "Done" ],
+          "Product Backlog Item": [ "Done" ]
+        }
+      },
+      "canEdit": true
     },
     {
-    "name": "Features",
-            "revision": 0,
-            "columns": [{
-                "name": "New",
-                "itemLimit": 0,
-                "stateMappings": {
-                    "Feature": "New"
-                },
-                "columnType": "incoming"
-            }, {
-                "name": "In Progress",
-                "itemLimit": 5,
-                "stateMappings": {
-                    "Feature": "In Progress"
-                },
-                "isSplit": false,
-                "description": "",
-                "columnType": "inProgress"
-            }, {
-                "name": "Done",
-                "itemLimit": 0,
-                "stateMappings": {
-                    "Feature": "Done"
-                },
-                "columnType": "outgoing"
-            }],
-            "rows": [{
-                "name": null
-            }],
-            "isValid": true,
-            "allowedMappings": {
-                "Incoming": {
-                    "Feature": ["New"]
-                },
-                "InProgress": {
-                    "Feature": ["In Progress", "New"]
-                },
-                "Outgoing": {
-                    "Feature": ["Done"]
-                }
-            },
-            "canEdit": true
-        
+      "name": "Features",
+      "revision": 0,
+      "columns": [
+        {
+          "name": "New",
+          "itemLimit": 0,
+          "stateMappings": {
+            "Feature": "New"
+          },
+          "columnType": "incoming"
+        },
+        {
+          "name": "In Progress",
+          "itemLimit": 5,
+          "stateMappings": {
+            "Feature": "In Progress"
+          },
+          "isSplit": false,
+          "description": "",
+          "columnType": "inProgress"
+        },
+        {
+          "name": "Done",
+          "itemLimit": 0,
+          "stateMappings": {
+            "Feature": "Done"
+          },
+          "columnType": "outgoing"
+        }
+      ],
+      "rows": [
+        {
+          "name": null
+        }
+      ],
+      "isValid": true,
+      "allowedMappings": {
+        "Incoming": {
+          "Feature": [ "New" ]
+        },
+        "InProgress": {
+          "Feature": [ "In Progress", "New" ]
+        },
+        "Outgoing": {
+          "Feature": [ "Done" ]
+        }
+      },
+      "canEdit": true
+
     }
-    ]
+  ]
 }

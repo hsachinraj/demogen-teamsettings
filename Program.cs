@@ -1,13 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.IO;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using System.Text;
 
 namespace ConsoleApp2
 {
@@ -73,16 +70,16 @@ namespace ConsoleApp2
     public class Teams
     {
         public string name { get; set; }
+        public string description { get; set; }
     }
     #endregion
 
 
-    class Program
+    internal class Program
     {
-
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            string personalAccessToken = "xfhozufmatsn6c26tbp6ejhqzvtlwcqqk7gh3l4blqgsttntifna";
+            string personalAccessToken = "glljbia2pjadsd7mjotsrxs3rxiwcl5t2lzxeixdi7msf5x64ukq";// "xfhozufmatsn6c26tbp6ejhqzvtlwcqqk7gh3l4blqgsttntifna";
             string credentials = Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes(string.Format("{0}:{1}", "", personalAccessToken)));
             string projectName = "Test3";
             string VersionNumber = "?api-version=5.0-preview.1";
@@ -104,47 +101,50 @@ namespace ConsoleApp2
 
             Console.WriteLine("Finished Reading...Provisioning Now");
 
-            string TeamasJSON = JsonConvert.SerializeObject(_teams);
 
-            using (var client = new HttpClient())
+            foreach (var team in _teams)
             {
-                client.BaseAddress = new Uri("https://dev.azure.com/sachinraj");  //url of your organization
+                string TeamasJSON = JsonConvert.SerializeObject(team);
 
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
-
-                var jsonContent = new StringContent(TeamasJSON, Encoding.UTF8, "application/json");
-                var request = client.PostAsync("/_apis/projects/" + projectName + "/teams" + VersionNumber, jsonContent);
-                var response = request.Result;
-
-                if (response.IsSuccessStatusCode)
+                using (var client = new HttpClient())
                 {
-                    Console.WriteLine("Successfully Created Team ");
-                }
-                else
-                {
-                    Console.WriteLine(String.Format("Error creating team due to {0}", response.StatusCode));
-                    return;
-                }
+                    client.BaseAddress = new Uri("https://dev.azure.com/sachinraj");  //url of your organization
 
-                //Setting Board Options
-                foreach (Board _board in _boardsList.board)
-                {
-                    string boardoptions = JsonConvert.SerializeObject(_board);
-                    var boardAsJson = new StringContent(boardoptions, Encoding.UTF8, "application/json");
-                    var request1 = client.PutAsync(projectName + "/" + teamName + "/_apis/work/boards/" + _board.name + VersionNumber, boardAsJson);
-                    if (request1.Result.IsSuccessStatusCode)
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
+
+                    var jsonContent = new StringContent(TeamasJSON, Encoding.UTF8, "application/json");
+                    var request = client.PostAsync("/_apis/projects/" + projectName + "/teams" + VersionNumber, jsonContent);
+                    var response = request.Result;
+
+                    if (response.IsSuccessStatusCode)
                     {
-                        Console.WriteLine(String.Format("Sucessfully Created Board {0} for team {1}", _board.name, teamName));
+                        Console.WriteLine("Successfully Created Team ");
                     }
+                    else
+                    {
+                        Console.WriteLine(String.Format("Error creating team due to {0}", response.StatusCode));
+                        return;
+                    }
+                    //Here directly we can't update the board columns, since we can't delete existing incoming and outgoing columns.
+                    // We can fetch the existing column IDs for the Team Project and Update the JSON with those IDs to respective incoming and outgoing columns
+                    //Then we can update the Board
 
+                    //Setting Board Options
+                    foreach (Board _board in _boardsList.board)
+                    {
+                        string boardoptions = JsonConvert.SerializeObject(_board.columns);
+                        var boardAsJson = new StringContent(boardoptions, Encoding.UTF8, "application/json");
+                        var request1 = client.PutAsync("https://dev.azure.com/devaccounts/" + projectName + "/" + team.name + "/_apis/work/boards/" + _board.name + "/columns" + VersionNumber, boardAsJson);
+                        var resp = request1.Result;
+                        if (request1.Result.IsSuccessStatusCode)
+                        {
+                            Console.WriteLine(String.Format("Sucessfully Created Board {0} for team {1}", _board.name, team.name));
+                        }
+                    }
                 }
-
-
-
             }
-
 
             Console.WriteLine("Finished Reading... Press a Key to end");
             Console.ReadKey();
