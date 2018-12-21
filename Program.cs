@@ -101,11 +101,10 @@ namespace ConsoleApp2
 
             Console.WriteLine("Finished Reading...Provisioning Now");
 
-
+            //looping throw teams and taking one team at a time
             foreach (var team in _teams)
             {
                 string TeamasJSON = JsonConvert.SerializeObject(team);
-
                 using (var client = new HttpClient())
                 {
                     client.BaseAddress = new Uri("https://dev.azure.com/sachinraj");  //url of your organization
