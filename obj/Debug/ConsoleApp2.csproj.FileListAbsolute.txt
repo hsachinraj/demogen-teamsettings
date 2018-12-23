@@ -9,3 +9,13 @@ C:\Users\sraj\source\repos\ConsoleApp2\ConsoleApp2\obj\Debug\ConsoleApp2.csproj.
 C:\Users\sraj\source\repos\ConsoleApp2\ConsoleApp2\obj\Debug\ConsoleApp2.csproj.CopyComplete
 C:\Users\sraj\source\repos\ConsoleApp2\ConsoleApp2\obj\Debug\ConsoleApp2.exe
 C:\Users\sraj\source\repos\ConsoleApp2\ConsoleApp2\obj\Debug\ConsoleApp2.pdb
+C:\Users\sraj\source\repos\demogen-teamsettings\bin\Debug\ConsoleApp2.exe.config
+C:\Users\sraj\source\repos\demogen-teamsettings\bin\Debug\ConsoleApp2.exe
+C:\Users\sraj\source\repos\demogen-teamsettings\bin\Debug\ConsoleApp2.pdb
+C:\Users\sraj\source\repos\demogen-teamsettings\bin\Debug\Newtonsoft.Json.pdb
+C:\Users\sraj\source\repos\demogen-teamsettings\bin\Debug\Newtonsoft.Json.xml
+C:\Users\sraj\source\repos\demogen-teamsettings\obj\Debug\ConsoleApp2.csprojAssemblyReference.cache
+C:\Users\sraj\source\repos\demogen-teamsettings\obj\Debug\ConsoleApp2.csproj.CoreCompileInputs.cache
+C:\Users\sraj\source\repos\demogen-teamsettings\obj\Debug\ConsoleApp2.csproj.CopyComplete
+C:\Users\sraj\source\repos\demogen-teamsettings\obj\Debug\ConsoleApp2.exe
+C:\Users\sraj\source\repos\demogen-teamsettings\obj\Debug\ConsoleApp2.pdb
