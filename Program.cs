@@ -72,99 +72,122 @@ namespace ConsoleApp2
     {
         public string name { get; set; }
         public string description { get; set; }
-
-        public List<Board> boards { get; set; }
-
-        public string bugsBehavior { get; set; }
-
-
+        public string folder { get; set; }
+        public bool defaultTeam {get; set;}
     }
+
+    public class TeamSettings
+    {
+        public string bugsBehavior { get; set; }
+        public BacklogVisibilities backlogVisibilities { get; set; }
+    }
+
+    public class BacklogVisibilities
+    {
+        public bool EpicCategory { get; set; }
+}
     #endregion
 
 
-    internal class Program
+    internal class Generator
     {
-        private static void Main(string[] args)
+        
+
+        public static void Main(string[] args)
         {
             string personalAccessToken = "xfhozufmatsn6c26tbp6ejhqzvtlwcqqk7gh3l4blqgsttntifna";
             string credentials = Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes(string.Format("{0}:{1}", "", personalAccessToken)));
             string projectName = "Test3";
             string acctName = "sachinraj";
             string VersionNumber = "?api-version=5.0-preview.1";
-            string Template = "Demo Template";
+            string selectedTemplate = "Demo Template";
+            string defaultTeam = projectName+" Team";
+            string templatePath = "..\\..\\Template\\" + selectedTemplate + "\\";
+            var client = new HttpClient();
 
             Console.WriteLine("Reading JSON File");
             List<Board> _boardsList = new List<Board>();
             List<Team> _teams = new List<Team>();
 
-            using (StreamReader r = new StreamReader("..\\..\\Template\\Boards.json"))
+           /* using (StreamReader r = new StreamReader("..\\..\\Template\\Boards.json"))
             {
                 string json = r.ReadToEnd();
                 _teams = JsonConvert.DeserializeObject<List<Team>>(json);
             }
-            /*
+            */
             
-            using (StreamReader r = new StreamReader("..\\..\\Template\\Teams.json"))
+            using (StreamReader r = new StreamReader(templatePath + "Teams\\Teams.json"))
             {
                 string json = r.ReadToEnd();
-                _teams = JsonConvert.DeserializeObject<List<Teams>>(json);
+                _teams = JsonConvert.DeserializeObject<List<Team>>(json);
             }
-            */
+            
 
             Console.WriteLine("Finished Reading...Provisioning Now");
 
             //looping throw teams and taking one team at a time
             foreach (var team in _teams)
             {
-                _boardsList = team.boards;
+               
                 string TeamasJSON = JsonConvert.SerializeObject(team);
-                using (var client = new HttpClient())
+                string teamFolder = Path.GetFullPath(templatePath + "Teams\\"+team.folder); ;
+                Console.WriteLine("---------------------------");
+                
+                //create the team if it is not default; for default teams, we will just retain the settings
+                if (team.defaultTeam ==false)
                 {
-                    client.BaseAddress = new Uri("https://dev.azure.com/");  //url of your organization
+                    Console.WriteLine(String.Format("Creating Team {0}", team.name);
+
+                   client.BaseAddress = new Uri("https://dev.azure.com/");  //url of your organization
 
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
-
-                    var jsonContent = new StringContent(TeamasJSON, Encoding.UTF8, "application/json");
-                   /* var request = client.PostAsync(acctName+"/_apis/projects/" + projectName + "/teams" + VersionNumber, jsonContent);
-                    var response = request.Result;
-
-                    if (response.IsSuccessStatusCode)
+                    CreateTeam(client, team.name);
+                    if (Directory.Exists(teamFolder))
                     {
-                        Console.WriteLine("Successfully Created Team ");
-                    }
-                    else
-                    {
-                        Console.WriteLine(String.Format("Error creating team due to {0}", response.StatusCode));
-                        return;
-                    }
-                    */
-                    //Here directly we can't update the board columns, since we can't delete existing incoming and outgoing columns.
-                    // We can fetch the existing column IDs for the Team Project and Update the JSON with those IDs to respective incoming and outgoing columns
-                    //Then we can update the Board
-
-                    //Setting Board Options
-                    foreach (Board _board in _boardsList)
-                    {
-                        string boardoptions = JsonConvert.SerializeObject(_board);
-                        var boardAsJson = new StringContent(boardoptions, Encoding.UTF8, "application/json");
-                        var request1 = client.PutAsync(acctName+"/" + projectName + "/" + team.name + "/_apis/work/boards/" + _board.name + VersionNumber, boardAsJson);
-                        var response = request1.Result;
-                        if (request1.Result.IsSuccessStatusCode)
+                        if (File.Exists(teamFolder+"//TeamSettings.json"))
                         {
-                            Console.WriteLine(String.Format("Sucessfully Created Board {0} for team {1}", _board.name, team.name));
-                        }
-                        else
-                        {
-                            Console.WriteLine(String.Format("Error creating team due to {0}", response.StatusCode));
-                            return;
+                            CreateTeamSetting(client,)
                         }
                     }
                 }
+                
+
+                    if (Directory.Exists(teamFolder))
+                    {
+                        Console.WriteLine(String.Format("Team {0} has settings in folder {1}", team.name, teamFolder));
+                    }
+                    else
+                    {
+                        Console.WriteLine(String.Format("Team {0} does not have settings ", team.name));
+                    }
+
+                }
             }
 
-            Console.WriteLine("Finished Reading... Press a Key to end");
+        private static void CreateTeam(HttpClient client, string name)
+        {
+            using (client)
+            {
+
+
+                var jsonContent = new StringContent(TeamasJSON, Encoding.UTF8, "application/json");
+                var request = client.PostAsync(acctName + "/_apis/projects/" + projectName + "/teams" + VersionNumber, jsonContent);
+                var response = request.Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine("Successfully Created Team ");
+                }
+                else
+                {
+                    Console.WriteLine(String.Format("Error creating team due to {0}", response.StatusCode));
+                    return;
+                }
+            }
+
+        Console.WriteLine("Finished Reading... Press a Key to end");
             Console.ReadKey();
 
         }

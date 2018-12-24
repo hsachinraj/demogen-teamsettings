@@ -1,6 +1,15 @@
 [
   {
     "name": "DB Team",
-    "description": "Database Team"
+    "description": "Database Team",
+    "folder": "DBTeam"
+  },
+  {
+    "name": "Default Team",
+    "description": "Default Team",
+    "folder": "TWT-Team",
+    "defaultTeam": true
   }
+
+
 ]
