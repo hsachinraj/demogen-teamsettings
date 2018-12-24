@@ -91,6 +91,7 @@ namespace ConsoleApp2
             string projectName = "Test3";
             string acctName = "sachinraj";
             string VersionNumber = "?api-version=5.0-preview.1";
+            string Template = "Demo Template";
 
             Console.WriteLine("Reading JSON File");
             List<Board> _boardsList = new List<Board>();
