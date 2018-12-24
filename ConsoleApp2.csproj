@@ -46,12 +46,63 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include=".vs\config\applicationhost.config" />
+    <None Include=".vs\ProjectSettings.json" />
+    <None Include=".vs\slnx.sqlite" />
+    <None Include=".vs\VSWorkspaceState.json" />
     <None Include="App.config" />
+    <None Include="bin\Debug\ConsoleApp2.exe.config" />
+    <None Include="obj\Debug\ConsoleApp2.csproj.CopyComplete" />
+    <None Include="obj\Debug\ConsoleApp2.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\ConsoleApp2.csprojAssemblyReference.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Release\ConsoleApp2.csproj.CoreCompileInputs.cache" />
     <None Include="packages.config" />
+    <None Include="Template\BoardColumns\BoardColumns.json" />
+    <None Include="Template\BoardRows\ BoardRows.json" />
+    <None Include="Template\Boards.json" />
+    <None Include="Template\BuildDefinitions\BuildDef1.json" />
+    <None Include="Template\CardFields\CardFields.json" />
+    <None Include="Template\CardStyles\CardStyles.json" />
+    <None Include="Template\DemoExtensions.json" />
+    <None Include="Template\ImportSourceCode\PublicWeb.json" />
+    <None Include="Template\ImportSourceCode\SmartHotel360.json" />
+    <None Include="Template\Iterations.json" />
+    <None Include="Template\ProjectSettings.json" />
+    <None Include="Template\ProjectTemplate.json" />
+    <None Include="Template\ServiceEndpoints\PublicWeb-code.json" />
+    <None Include="Template\ServiceEndpoints\SmartHotel360-code.json" />
+    <None Include="Template\TeamArea.json" />
+    <None Include="Template\Teams.json" />
+    <None Include="Template\TeamSetting\TeamSetting.json" />
+    <None Include="Template\WorkItems\Bug.json" />
+    <None Include="Template\WorkItems\Epic.json" />
+    <None Include="Template\WorkItems\Feature.json" />
+    <None Include="Template\WorkItems\ProductBacklogItem.json" />
+    <None Include="Template\WorkItems\Task.json" />
+    <None Include="Template\WorkItems\TestCase.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\ConsoleApp2.exe" />
+    <Content Include="bin\Debug\ConsoleApp2.pdb" />
+    <Content Include="bin\Debug\Newtonsoft.Json.dll" />
+    <Content Include="bin\Debug\Newtonsoft.Json.pdb" />
+    <Content Include="bin\Debug\Newtonsoft.Json.xml" />
+    <Content Include="obj\Debug\ConsoleApp2.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\ConsoleApp2.exe" />
+    <Content Include="obj\Debug\ConsoleApp2.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include=".vs\demogen-teamsettings\v15\" />
+    <Folder Include="bin\Release\" />
+    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
