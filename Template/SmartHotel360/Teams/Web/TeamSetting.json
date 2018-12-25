@@ -1,5 +1,4 @@
-{
-  "settings": [
+[
     {
       "BoardType": "Epics",
       "bugsBehavior": "asRequirements",
@@ -28,4 +27,3 @@
       }
     }
   ]
-}

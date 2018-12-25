@@ -12,6 +12,21 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -65,12 +80,37 @@
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <None Include="obj\Release\ConsoleApp2.csproj.CoreCompileInputs.cache" />
     <None Include="packages.config" />
+    <None Include="packages\Newtonsoft.Json.12.0.1\.signature.p7s" />
+    <None Include="packages\Newtonsoft.Json.12.0.1\LICENSE.md" />
+    <None Include="packages\Newtonsoft.Json.12.0.1\Newtonsoft.Json.12.0.1.nupkg" />
     <None Include="Template\BoardColumns\BoardColumns.json" />
     <None Include="Template\BoardRows\ BoardRows.json" />
-    <None Include="Template\Boards.json" />
     <None Include="Template\BuildDefinitions\BuildDef1.json" />
     <None Include="Template\CardFields\CardFields.json" />
     <None Include="Template\CardStyles\CardStyles.json" />
+    <None Include="Template\Demo Template\BoardColumns\BoardColumns.json" />
+    <None Include="Template\Demo Template\BoardRows\ BoardRows.json" />
+    <None Include="Template\Demo Template\Boards.json" />
+    <None Include="Template\Demo Template\BuildDefinitions\BuildDef1.json" />
+    <None Include="Template\Demo Template\CardFields\CardFields.json" />
+    <None Include="Template\Demo Template\CardStyles\CardStyles.json" />
+    <None Include="Template\Demo Template\DemoExtensions.json" />
+    <None Include="Template\Demo Template\ImportSourceCode\PublicWeb.json" />
+    <None Include="Template\Demo Template\ImportSourceCode\SmartHotel360.json" />
+    <None Include="Template\Demo Template\Iterations.json" />
+    <None Include="Template\Demo Template\ProjectSettings.json" />
+    <None Include="Template\Demo Template\ProjectTemplate.json" />
+    <None Include="Template\Demo Template\ServiceEndpoints\PublicWeb-code.json" />
+    <None Include="Template\Demo Template\ServiceEndpoints\SmartHotel360-code.json" />
+    <None Include="Template\Demo Template\TeamArea.json" />
+    <None Include="Template\Demo Template\TeamSetting\TeamSetting.json" />
+    <None Include="Template\Demo Template\Teams\Teams.json" />
+    <None Include="Template\Demo Template\WorkItems\Bug.json" />
+    <None Include="Template\Demo Template\WorkItems\Epic.json" />
+    <None Include="Template\Demo Template\WorkItems\Feature.json" />
+    <None Include="Template\Demo Template\WorkItems\ProductBacklogItem.json" />
+    <None Include="Template\Demo Template\WorkItems\Task.json" />
+    <None Include="Template\Demo Template\WorkItems\TestCase.json" />
     <None Include="Template\DemoExtensions.json" />
     <None Include="Template\ImportSourceCode\PublicWeb.json" />
     <None Include="Template\ImportSourceCode\SmartHotel360.json" />
@@ -79,6 +119,39 @@
     <None Include="Template\ProjectTemplate.json" />
     <None Include="Template\ServiceEndpoints\PublicWeb-code.json" />
     <None Include="Template\ServiceEndpoints\SmartHotel360-code.json" />
+    <None Include="Template\SmartHotel360\BuildDefinitions\BuildDef1.json" />
+    <None Include="Template\SmartHotel360\DemoExtensions.json" />
+    <None Include="Template\SmartHotel360\ImportSourceCode\PublicWeb.json" />
+    <None Include="Template\SmartHotel360\ImportSourceCode\SmartHotel360.json" />
+    <None Include="Template\SmartHotel360\Iterations.json" />
+    <None Include="Template\SmartHotel360\ProjectSettings.json" />
+    <None Include="Template\SmartHotel360\ProjectTemplate.json" />
+    <None Include="Template\SmartHotel360\ServiceEndpoints\PublicWeb-code.json" />
+    <None Include="Template\SmartHotel360\ServiceEndpoints\SmartHotel360-code.json" />
+    <None Include="Template\SmartHotel360\TeamArea.json" />
+    <None Include="Template\SmartHotel360\Teams\Iterations.json" />
+    <None Include="Template\SmartHotel360\Teams\Mobile\BoardColumns.json" />
+    <None Include="Template\SmartHotel360\Teams\Mobile\BoardRows.json" />
+    <None Include="Template\SmartHotel360\Teams\Mobile\CardFields.json" />
+    <None Include="Template\SmartHotel360\Teams\Mobile\CardStyles.json" />
+    <None Include="Template\SmartHotel360\Teams\Mobile\TeamSetting.json" />
+    <None Include="Template\SmartHotel360\Teams\SmartHotel360 Team\BoardColumns.json" />
+    <None Include="Template\SmartHotel360\Teams\SmartHotel360 Team\BoardRows.json" />
+    <None Include="Template\SmartHotel360\Teams\SmartHotel360 Team\CardFields.json" />
+    <None Include="Template\SmartHotel360\Teams\SmartHotel360 Team\CardStyles.json" />
+    <None Include="Template\SmartHotel360\Teams\SmartHotel360 Team\TeamSetting.json" />
+    <None Include="Template\SmartHotel360\Teams\Teams.json" />
+    <None Include="Template\SmartHotel360\Teams\Web\BoardColumns.json" />
+    <None Include="Template\SmartHotel360\Teams\Web\BoardRows.json" />
+    <None Include="Template\SmartHotel360\Teams\Web\CardFields.json" />
+    <None Include="Template\SmartHotel360\Teams\Web\CardStyles.json" />
+    <None Include="Template\SmartHotel360\Teams\Web\TeamSetting.json" />
+    <None Include="Template\SmartHotel360\WorkItems\Bug.json" />
+    <None Include="Template\SmartHotel360\WorkItems\Epic.json" />
+    <None Include="Template\SmartHotel360\WorkItems\Feature.json" />
+    <None Include="Template\SmartHotel360\WorkItems\ProductBacklogItem.json" />
+    <None Include="Template\SmartHotel360\WorkItems\Task.json" />
+    <None Include="Template\SmartHotel360\WorkItems\TestCase.json" />
     <None Include="Template\TeamArea.json" />
     <None Include="Template\Teams.json" />
     <None Include="Template\TeamSetting\TeamSetting.json" />
@@ -98,11 +171,51 @@
     <Content Include="obj\Debug\ConsoleApp2.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\ConsoleApp2.exe" />
     <Content Include="obj\Debug\ConsoleApp2.pdb" />
+    <Content Include="packages\Newtonsoft.Json.12.0.1\lib\net20\Newtonsoft.Json.dll" />
+    <Content Include="packages\Newtonsoft.Json.12.0.1\lib\net20\Newtonsoft.Json.pdb" />
+    <Content Include="packages\Newtonsoft.Json.12.0.1\lib\net20\Newtonsoft.Json.xml" />
+    <Content Include="packages\Newtonsoft.Json.12.0.1\lib\net35\Newtonsoft.Json.dll" />
+    <Content Include="packages\Newtonsoft.Json.12.0.1\lib\net35\Newtonsoft.Json.pdb" />
+    <Content Include="packages\Newtonsoft.Json.12.0.1\lib\net35\Newtonsoft.Json.xml" />
+    <Content Include="packages\Newtonsoft.Json.12.0.1\lib\net40\Newtonsoft.Json.dll" />
+    <Content Include="packages\Newtonsoft.Json.12.0.1\lib\net40\Newtonsoft.Json.pdb" />
+    <Content Include="packages\Newtonsoft.Json.12.0.1\lib\net40\Newtonsoft.Json.xml" />
+    <Content Include="packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll" />
+    <Content Include="packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.pdb" />
+    <Content Include="packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.xml" />
+    <Content Include="packages\Newtonsoft.Json.12.0.1\lib\netstandard1.0\Newtonsoft.Json.dll" />
+    <Content Include="packages\Newtonsoft.Json.12.0.1\lib\netstandard1.0\Newtonsoft.Json.pdb" />
+    <Content Include="packages\Newtonsoft.Json.12.0.1\lib\netstandard1.0\Newtonsoft.Json.xml" />
+    <Content Include="packages\Newtonsoft.Json.12.0.1\lib\netstandard1.3\Newtonsoft.Json.dll" />
+    <Content Include="packages\Newtonsoft.Json.12.0.1\lib\netstandard1.3\Newtonsoft.Json.pdb" />
+    <Content Include="packages\Newtonsoft.Json.12.0.1\lib\netstandard1.3\Newtonsoft.Json.xml" />
+    <Content Include="packages\Newtonsoft.Json.12.0.1\lib\netstandard2.0\Newtonsoft.Json.dll" />
+    <Content Include="packages\Newtonsoft.Json.12.0.1\lib\netstandard2.0\Newtonsoft.Json.pdb" />
+    <Content Include="packages\Newtonsoft.Json.12.0.1\lib\netstandard2.0\Newtonsoft.Json.xml" />
+    <Content Include="packages\Newtonsoft.Json.12.0.1\lib\portable-net40+sl5+win8+wp8+wpa81\Newtonsoft.Json.dll" />
+    <Content Include="packages\Newtonsoft.Json.12.0.1\lib\portable-net40+sl5+win8+wp8+wpa81\Newtonsoft.Json.pdb" />
+    <Content Include="packages\Newtonsoft.Json.12.0.1\lib\portable-net40+sl5+win8+wp8+wpa81\Newtonsoft.Json.xml" />
+    <Content Include="packages\Newtonsoft.Json.12.0.1\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll" />
+    <Content Include="packages\Newtonsoft.Json.12.0.1\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.pdb" />
+    <Content Include="packages\Newtonsoft.Json.12.0.1\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include=".vs\demogen-teamsettings\v15\" />
     <Folder Include="bin\Release\" />
     <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="Template\Demo Template\Teams\TWT-Team\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -32,7 +32,7 @@ namespace ConsoleApp2
         public string name { get; set; }
         public int revision { get; set; }
 
-       public List<BoardColumn> columns { get; set; }
+        public List<BoardColumn> columns { get; set; }
 
         public List<BoardFields> fields { get; set; }
 
@@ -73,7 +73,7 @@ namespace ConsoleApp2
         public string name { get; set; }
         public string description { get; set; }
         public string folder { get; set; }
-        public bool defaultTeam {get; set;}
+        public bool defaultTeam { get; set; }
     }
 
     public class TeamSettings
@@ -94,6 +94,26 @@ namespace ConsoleApp2
 
         [JsonProperty(PropertyName = "Microsoft.RequirementCategory")]
         public bool RequirementCategory { get; set; }
+    }
+
+   /* public class Iterations
+    {
+        [JsonProperty(PropertyName = "IterationsList")]
+        public Iteration[] IterationsList { get; set; }
+
+
+    }*/
+
+    public class Iterations
+    {
+        public string Team { get; set; }
+        [JsonProperty(PropertyName = "value")]
+        public List<IterationValue> Value { get; set; }
+
+    }
+    public class IterationValue{
+        public string Name { get; set; }
+        public string Path { get; set; }
     }
     #endregion
 
@@ -153,8 +173,10 @@ namespace ConsoleApp2
                 {
                     teamNameToProvision = team.name;
                     Console.WriteLine(String.Format("Creating Team {0}", teamNameToProvision));
-                    CreateTeam(teamAsJson);
+                  //  CreateTeam(teamAsJson);
                 }
+
+                CreateIterations(Path.GetFullPath(templatePath + "Teams\\Iterations.json"), team.name,teamNameToProvision);
 
                 string teamSettingsFile = teamFolder + "\\TeamSetting.json";
 
@@ -174,6 +196,8 @@ namespace ConsoleApp2
 
             }
 
+
+
             Console.WriteLine("Finished Reading... Press a Key to end");
             Console.ReadKey();
         }
@@ -186,13 +210,13 @@ namespace ConsoleApp2
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
-            TeamSettings teamSettings = new TeamSettings();
+           List<TeamSettings> teamSettings = new List<TeamSettings>();
             string teamSettingsJson = "";
 
             using (StreamReader r = new StreamReader(teamSettingsFile))
             {
                 teamSettingsJson = r.ReadToEnd();
-                teamSettings = JsonConvert.DeserializeObject<TeamSettings>(teamSettingsJson);
+                teamSettings = JsonConvert.DeserializeObject<List<TeamSettings>>(teamSettingsJson);
             }
 
             using (client)
@@ -204,7 +228,7 @@ namespace ConsoleApp2
                 try
                 {
                     response = client.SendAsync(request).Result;
-                    Console.WriteLine("Successfully Created Team ");
+                    Console.WriteLine(String.Format("Successfully updated settings for {0} Team ",teamName ));
                 }
                 catch (Exception e)
                 {
@@ -245,6 +269,55 @@ namespace ConsoleApp2
 
         }
 
+
+        private static bool CreateIterations(string IterationsFile, string teamNameToSearch, string teamNameToProvision)
+        {
+            var iterationsJson="";
+            List<Iterations> _iterations = new List<Iterations>();
+
+            var client = new HttpClient();
+            client.BaseAddress = new Uri("https://dev.azure.com/");  //url of your organization
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
+            HttpResponseMessage response = new HttpResponseMessage();
+            
+
+            using (StreamReader r = new StreamReader(IterationsFile))
+            {
+                iterationsJson = r.ReadToEnd();
+                _iterations = JsonConvert.DeserializeObject<List<Iterations>>(iterationsJson);
+            }
+
+
+
+            foreach (Iterations _iteration in _iterations)
+            {
+                if (_iteration.Team == teamNameToSearch)
+                {
+                    using (client)
+                    {
+                        string iterationAsJson = JsonConvert.SerializeObject(_iteration);
+                        var jsonContent = new StringContent(iterationAsJson, Encoding.UTF8, "application/json");
+                        var request = client.PostAsync(acctName + "//" + projectName + "//" + teamNameToProvision + "/_apis/work/teamsettings/Iterations" + VersionNumber, jsonContent);
+                        try
+                        {
+                           
+                            response = request.Result;
+                            Console.WriteLine(String.Format("Successfully updated Iterations for {0} Team ", teamNameToProvision));
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(String.Format("Error creating Iterations due to {0} with message {1}", response.StatusCode, e.ToString()));
+                            return false;
+                        }
+                    }
+                }
+            }
+                return true;
+
+
+        }
     }
 
 }
