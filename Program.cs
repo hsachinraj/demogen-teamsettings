@@ -114,6 +114,14 @@ namespace ConsoleApp2
     public class IterationValue{
         public string Name { get; set; }
         public string Path { get; set; }
+
+        public TeamIterationAttributes attributes { get; set; }
+    }
+    public class TeamIterationAttributes
+    {
+        public string startDate { get; set; }
+        public string finishDate { get; set; }
+        public string timeFrame { get; set; }
     }
     #endregion
 
@@ -173,10 +181,12 @@ namespace ConsoleApp2
                 {
                     teamNameToProvision = team.name;
                     Console.WriteLine(String.Format("Creating Team {0}", teamNameToProvision));
-                  //  CreateTeam(teamAsJson);
+                    CreateTeam(teamAsJson);
+                   CreateArea(teamNameToProvision);
                 }
 
-                CreateIterations(Path.GetFullPath(templatePath + "Teams\\Iterations.json"), team.name,teamNameToProvision);
+                // Team Settings not working
+                CreateIterations(Path.GetFullPath(templatePath + "Teams\\Iterations1.json"), team.name,teamNameToProvision);
 
                 string teamSettingsFile = teamFolder + "\\TeamSetting.json";
 
@@ -297,14 +307,18 @@ namespace ConsoleApp2
                 {
                     using (client)
                     {
-                        string iterationAsJson = JsonConvert.SerializeObject(_iteration);
+                        string iterationAsJson = JsonConvert.SerializeObject(_iteration.Value);
                         var jsonContent = new StringContent(iterationAsJson, Encoding.UTF8, "application/json");
-                        var request = client.PostAsync(acctName + "//" + projectName + "//" + teamNameToProvision + "/_apis/work/teamsettings/Iterations" + VersionNumber, jsonContent);
+                        var request = client.PostAsync(acctName + "/" + projectName + "/_apis/work/teamsettings/iterations" + VersionNumber, jsonContent);
                         try
                         {
                            
                             response = request.Result;
-                            Console.WriteLine(String.Format("Successfully updated Iterations for {0} Team ", teamNameToProvision));
+                            if (response.IsSuccessStatusCode)
+                            {
+                                Console.WriteLine(String.Format("Successfully updated Iterations for {0} Team ", teamNameToProvision));
+                            }
+                            
                         }
                         catch (Exception e)
                         {
@@ -317,6 +331,35 @@ namespace ConsoleApp2
                 return true;
 
 
+        }
+
+        public static bool CreateArea(string areaName)
+
+        {
+            string createdAreaName = string.Empty;
+            object node = new { name = areaName };
+
+            var client = new HttpClient();
+            client.BaseAddress = new Uri("https://dev.azure.com/");  //url of your organization
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
+            HttpResponseMessage response = new HttpResponseMessage();
+
+            using (client)
+            {
+
+                var jsonContent = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(node), Encoding.UTF8, "application/json");
+                var method = new HttpMethod("PATCH");
+                var request = new HttpRequestMessage(method, acctName + "/" + projectName + "/_apis/wit/classificationNodes/areas" + "?api - version = 5.1 - preview.2") { Content = jsonContent } ;
+                response = client.SendAsync(request).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    string result = response.Content.ReadAsStringAsync().Result;
+                    return true;
+                }
+            }
+            return false;
         }
     }
 
